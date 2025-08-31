@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap" rel="stylesheet">
+    <div>
+        <img src="static/asset/Logo Afi.png" alt="refresh" class="logo" id="reload-img">
+    </div>
+</head>
+<body>
+    <h1 id="animated-text"> Wordle Game </h1>
+    <h2 id="animated-text">medium (6 Letters)</h2>
+
+    <div class="word-list-container">
+        <div id="wordList" class="grid-container">
+            <!-- Kata dan gambar akan dimasukkan melalui JavaScript -->
+        </div>
+    </div>
+
+    <div class="button-container">
+        <a href = '/' class="btn red-btn" onclick="goBack()">Kembali</a>
+        <a href= '/medium' class="btn green-btn" onclick="startGame()">Start Game</a>
+    </div>
+
+    <script>
+        const container = document.getElementById("wordList");
+        const wordsEasy = ["affine", "backup", "binary", "branch", "buffer", "column", "commit", "concat", "digest", "docker", "domain", "driver", "encode", "entity", "export", "github", "import", "inject", "kernel", "lambda", "markov", "memory", "mining", "module", "neural", "pandas", "parser", "python", "script", "server", "signal", "syntax", "unique", "update", "matrix"];
+        const imageFormats = [".jpg", ".jpeg", ".png"]; // Format gambar yang diperbolehkans
+
+        wordsEasy.forEach(word => {
+            const div = document.createElement("div");
+            div.classList.add("word-item");
+
+            // Coba semua format gambar sampai menemukan yang ada
+            let img = new Image();
+            let imgSrc = null;
+            let found = false;
+            let attempts = 0;
+
+            function tryNextFormat() {
+                if (attempts >= imageFormats.length) {
+                    console.warn(`Image not found for ${word}`);
+                    return; // Jika tidak ada format yang cocok, hentikan pencarian
+                }
+
+                imgSrc = `static/medium/${word}${imageFormats[attempts]}`;
+                img.src = imgSrc;
+                img.onload = () => {
+                    if (!found) {
+                        found = true;
+                        div.innerHTML = `<img src="${imgSrc}" alt="${word}"> 
+                                        <p>${word}</p>`;
+                        container.appendChild(div);
+                    }
+                };
+                img.onerror = () => {
+                    attempts++;
+                    tryNextFormat(); // Coba format berikutnya
+                };
+            }
+
+            tryNextFormat(); // Mulai pengecekan format gambar
+        });
+
+    </script>
+</body>
+</html>

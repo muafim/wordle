@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle - Hard</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap" rel="stylesheet">
+    <div>
+        <img src="static/asset/Logo Afi.png" alt="refresh" class="logo">
+    </div>
+</head>
+<body class="hard">
+    <h1>Wordle - Hard (8 Letters)</h1>
+    <div class="level-selector">
+        <a href="list-easy" class="level-btn">Easy (4 Letters)</a>
+        <a href="list-medium" class="level-btn">Medium (6 Letters)</a>
+        <a href="#" class="level-btn-active">Hard (8 Letters)</a>
+    </div>
+    <div class="game-board">
+        <!-- 8 Letter Rows -->
+        <div class="letter-row">
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+        </div>
+        <div class="letter-row">
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+        </div>
+        <div class="letter-row">
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+        </div>
+        <div class="letter-row">
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+        </div>
+        <div class="letter-row">
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+        </div>
+        <div class="letter-row">
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+        </div>
+        <div class="letter-row">
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+        </div>
+        <div class="letter-row">
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+            <div class="letter-box"></div>
+        </div>
+
+        <div id="reload-img">
+            <img src="static/asset/reload.png" alt="refresh" class="reload-img" id="reload-img">
+        </div>
+
+        <!-- Keyboard (same for all levels) -->
+        <div id="game-board">
+            <div class="first-row">
+                <button class="keyboard-button">Q</button>
+                <button class="keyboard-button">W</button>
+                <button class="keyboard-button">E</button>
+                <button class="keyboard-button">R</button>
+                <button class="keyboard-button">T</button>
+                <button class="keyboard-button">Y</button>
+                <button class="keyboard-button">U</button>
+                <button class="keyboard-button">I</button>
+                <button class="keyboard-button">O</button>
+                <button class="keyboard-button">P</button>
+            </div>
+            <div class="second-row">
+                <button class="keyboard-button">A</button>
+                <button class="keyboard-button">S</button>
+                <button class="keyboard-button">D</button>
+                <button class="keyboard-button">F</button>
+                <button class="keyboard-button">G</button>
+                <button class="keyboard-button">H</button>
+                <button class="keyboard-button">J</button>
+                <button class="keyboard-button">K</button>
+                <button class="keyboard-button">L</button>
+            </div>
+            <div class="third-row">
+                <button class="keyboard-button">Del</button>
+                <button class="keyboard-button">Z</button>
+                <button class="keyboard-button">X</button>
+                <button class="keyboard-button">C</button>
+                <button class="keyboard-button">V</button>
+                <button class="keyboard-button">B</button>
+                <button class="keyboard-button">N</button>
+                <button class="keyboard-button">M</button>
+                <button class="keyboard-button">Enter</button>
+            </div>
+        </div>
+    </div>
+    <script src="static/script.js"></script>
+</body>
+</html>
